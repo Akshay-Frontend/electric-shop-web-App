@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   // console.log(product);
 
   const { addToCart, cartItem } = UseCart();
-  //console.log(cartItem);
+  console.log(cartItem);
 
   return (
     <div>

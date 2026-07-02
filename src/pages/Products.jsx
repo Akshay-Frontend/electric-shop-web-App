@@ -1,17 +1,16 @@
-import Lottie from "lottie-react"; // Add this line at the top
-import React, { useEffect } from "react";
+import Lottie from "lottie-react";
+import React, { useEffect, useState,  } from "react";
 import FilterSection from "../components/FilterSection";
 import Loading from "../assets/Loading4.webm";
 import ProductCard from "../components/ProductCard";
-import { useState } from "react";
 import Pagination from "../components/Pagination";
 import notfound from "../assets/notfound.json";
 import MobileFilter from "../components/MobileFilter";
 import { GetData } from "../context/DataContext";
 
-const Products = () => {
-  // Use to this functionality another Components it FilterSection
+ const Products = () => {
   const { data, fetchAllProducts } = GetData();
+
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [brand, setBrand] = useState("All");
@@ -22,7 +21,6 @@ const Products = () => {
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
     setPage(1);
-    // console.log(category);
   };
 
   const handleBrandChange = (e) => {
@@ -30,6 +28,7 @@ const Products = () => {
     setPage(1);
     window.scrollTo(0, 0);
   };
+
   const filterData = data?.filter(
     (item) =>
       item.title.toLowerCase().includes(search.toLowerCase()) &&
@@ -43,12 +42,12 @@ const Products = () => {
     setPage(selectedPage);
   };
 
-  const dynamicPage = Math.ceil(filterData?.length / 8);
+  // ✅ Safe pagination
+    const dynamicPage = Math.ceil(filterData?.length / 8);
 
-  // ******************************************  use the Components FilterSection ************************************
   useEffect(() => {
-    fetchAllProducts();
-    window.scroll(0, 0);
+     fetchAllProducts();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -71,7 +70,6 @@ const Products = () => {
 
         {data?.length > 0 ? (
           <>
-            {/* *****************************************    Filter Section Components******************************** */}
             <div className="flex gap-8">
               <FilterSection
                 search={search}
@@ -109,6 +107,7 @@ const Products = () => {
                   <Lottie animationData={notfound} className="w-[500px]" />
                 </div>
               )}
+
             </div>
           </>
         ) : (
