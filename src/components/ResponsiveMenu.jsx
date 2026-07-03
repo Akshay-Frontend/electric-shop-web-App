@@ -63,7 +63,7 @@ const ResponsiveMenu = ({ openNav, setOpenNav }) => {
                 className="flex items-center gap-3 rounded-xl bg-red-50 px-4 py-3 text-gray-800 transition hover:bg-red-100"
               >
                 <Phone className="h-6 w-6 text-red-500" />
-                <span className="font-semibold">About</span>
+                <span className="font-semibold">Contact</span>
               </Link>
             </ul>
           </nav>
